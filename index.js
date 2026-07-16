@@ -32,15 +32,6 @@ document.addEventListener("DOMContentLoaded", function() {
         checkbox.addEventListener("change", calcularOrcamento);
     });
 
-    btnFecharOrcamento.addEventListener("click", function() {
-        const totalFinal = valorTotalSpan.textContent;
-        if (tipoProjeto.value === "0") {
-            alert("Por favor, selecione ao menos uma categoria de projeto!");
-        } else {
-            alert(`Obrigado pelo interesse! Seu pré-orçamento foi calculado em ${totalFinal}. Nossa equipe entrará em contato para alinhar os detalhes finais.`);
-        }
-    });
-
     // --- Envio Simulado do Formulário de Contato ---
     const formContato = document.querySelector(".contact-form");
     if (formContato) {
@@ -48,6 +39,32 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault();
             alert("Mensagem enviada com sucesso! Responderemos em até 24 horas úteis.");
             formContato.reset();
+        });
+    }
+
+    // --- Envio do Formulário de Orçamento via e-mail ---
+    const form = document.getElementById("form-orcamento");
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value.trim();
+            const telefone = document.getElementById("telefone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const tipo = document.getElementById("tipo-projeto").value;
+            const descricao = document.getElementById("descricao").value.trim();
+            const totalFinal = valorTotalSpan.textContent;
+
+            if (tipo === "0") {
+                alert("Por favor, selecione ao menos uma categoria de projeto!");
+                return;
+            }
+
+            const body = `Nome: ${nome}\nTelefone: ${telefone}\nE-mail: ${email}\nTipo de Projeto: ${tipo}\nValor Estimado: ${totalFinal}\n\nDescrição do Projeto:\n${descricao}`;
+            const whatsappNumber = "5533991833588";
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(body)}`;
+
+            window.open(whatsappLink, "_blank");
         });
     }
 
