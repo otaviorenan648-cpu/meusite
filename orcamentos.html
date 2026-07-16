@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamentos | Durand Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h2>Durand Tech <span>Desenvolvimento de Sistemas</span></h2>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#inicio">Início</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="vendas.html">Vendas</a></li>
+                    <li><a href="index.html#sistemas">Sistemas</a></li>
+                    <li><a href="index.html#portfolio">Portfólio</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                    <li><a href="orcamentos.html" class="btn-highlight">Orçamentos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="orcamentos" class="section-padding bg-dark text-light">
+        <div class="container">
+            <h2 class="section-title">Simulação de Orçamento</h2>
+            <p class="section-subtitle">Selecione as opções desejadas e tenha uma estimativa prévia do seu investimento.</p>
+            <div class="budget-box">
+                <form id="form-orcamento">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" placeholder="Seu Telefone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" placeholder="Seu E-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descreva seu projeto:</label>
+                        <textarea id="descricao" rows="4" placeholder="Digite mais detalhes sobre o projeto" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-projeto">Tipo de Projeto:</label>
+                        <select id="tipo-projeto" required>
+                            <option value="0">Selecione...</option>
+                            <option value="3000">Website Institucional (R$ 3.000,00+)</option>
+                            <option value="7000">E-commerce / Loja Virtual (R$ 7.000,00+)</option>
+                            <option value="12000">Sistema Web / SaaS Personalizado (R$ 12.000,00+)</option>
+                            <option value="15000">Aplicativo Mobile Completo (R$ 15.000,00+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <p>Serviços Adicionais:</p>
+                        <label><input type="checkbox" class="adicional" value="1500"> Design UI/UX Personalizado (+ R$ 1.500)</label>
+                        <label><input type="checkbox" class="adicional" value="2000"> Suporte & Hospedagem Mensal (+ R$ 2.000)</label>
+                        <label><input type="checkbox" class="adicional" value="1000"> Integração de APIs de Terceiros (+ R$ 1.000)</label>
+                    </div>
+                    <div class="budget-result">
+                        <h3>Estimativa Inicial: <span id="valor-total">R$ 0,00</span></h3>
+                    </div>
+                    <button type="submit" id="btn-fechar-orcamento" class="btn-primary">Enviar Solicitação</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Durand Tech Soft. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://instagram.com/durandtechsysten" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/otaviorenan648-cpu" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61577087769278&locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://telegram.org/@OtavioDev2684" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://wa.me/5553991833588?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
