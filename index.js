@@ -32,13 +32,21 @@ document.addEventListener("DOMContentLoaded", function() {
         checkbox.addEventListener("change", calcularOrcamento);
     });
 
-    // --- Envio Simulado do Formulário de Contato ---
-    const formContato = document.querySelector(".contact-form");
+    // --- Envio do Formulário de Contato via e-mail ---
+    const formContato = document.getElementById("form-contato");
     if (formContato) {
         formContato.addEventListener("submit", function(event) {
             event.preventDefault();
-            alert("Mensagem enviada com sucesso! Responderemos em até 24 horas úteis.");
-            formContato.reset();
+
+            const nomeContato = document.getElementById("contato-nome").value.trim();
+            const emailContato = document.getElementById("contato-email").value.trim();
+            const mensagemContato = document.getElementById("contato-mensagem").value.trim();
+
+            const subject = "Nova mensagem pelo formulário de contato - Durand Tech";
+            const body = `Nome: ${nomeContato}\nE-mail: ${emailContato}\n\nMensagem:\n${mensagemContato}`;
+            const mailtoLink = `mailto:durandtechsysten@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            window.location.href = mailtoLink;
         });
     }
 
