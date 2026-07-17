@@ -79,6 +79,23 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- Scroll Ativo na Navigation Bar ---
     const sections = document.querySelectorAll("section");
     const navItems = document.querySelectorAll(".nav-links a");
+    const skillsSection = document.getElementById("habilidades");
+    const skillProgressBars = document.querySelectorAll(".skill-progress");
+
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return rect.top < window.innerHeight - 120 && rect.bottom >= 0;
+    }
+
+    function animateSkillBars() {
+        if (!skillsSection || skillsSection.classList.contains("skills-animated")) return;
+        if (isInViewport(skillsSection)) {
+            skillProgressBars.forEach(bar => {
+                bar.style.width = bar.dataset.progress + "%";
+            });
+            skillsSection.classList.add("skills-animated");
+        }
+    }
 
     window.addEventListener("scroll", () => {
         let current = "";
@@ -96,6 +113,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 a.classList.add("active");
             }
         });
+
+        animateSkillBars();
     });
+
+    animateSkillBars();
 
 });

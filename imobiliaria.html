@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Imobiliária</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gallery-grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            max-width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .gallery-grid img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            display: none;
+            place-items: center;
+            z-index: 9999;
+            padding: 1rem;
+            opacity: 0;
+        }
+
+        .lightbox-overlay.active {
+            display: grid;
+            animation: fadeInOverlay 0.25s ease forwards;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: min(90vw, 900px);
+            max-height: 90vh;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            animation: scaleIn 0.3s ease;
+        }
+
+        .lightbox-img {
+            width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transform: scale(2);
+            transform-origin: center;
+            animation: zoomIn 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        .lightbox-overlay.active .lightbox-img {
+            opacity: 1;
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(1.8); opacity: 0; }
+            to { transform: scale(2); opacity: 1; }
+        }
+
+        .lightbox-close,
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: #ffffff;
+            font-size: 1.6rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            border-radius: 999px;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .lightbox-close {
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .lightbox-prev {
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-next {
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .lightbox-img {
+                transform: scale(1.6);
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                font-size: 1.25rem;
+                padding: 0.65rem 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h2>Salão Elegance</h2>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <h1>Site Imobiliária</h1>
+            <p class="section-subtitle">Conheça o site exclusivo para a Imobiliária.</p>
+            <p>Este site foi criado para apresentar seus serviços, captar clientes e valorizar a imagem da imobiliária com um design moderno e profissional.</p>
+            <p><strong>Preço: R$ 2.500,00</strong></p>
+            <div class="gallery-grid">
+                <img src="imobiliaria.jpg" alt="Imobiliária 1">
+                <img src="imobiliaria 2.jpg" alt="Imobiliária 2">
+                <img src="imobiliaria 3.jpg" alt="Imobiliária 3">
+                <img src="imobiliaria 4.jpg" alt="Imobiliária 4">
+                <img src="imobiliaria 5.jpg" alt="Imobiliária 5">
+                <img src="imobiliaria 6.jpg" alt="Imobiliária 6">
+                <img src="imobiliaria 7.jpg" alt="Imobiliária 7">
+                <img src="imobiliaria 8.jpg" alt="Imobiliária 8">                
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">×</button>
+            <button class="lightbox-prev" id="lightboxPrev">‹</button>
+            <img src="" alt="Imagem ampliada" class="lightbox-img" id="lightboxImage">
+            <button class="lightbox-next" id="lightboxNext">›</button>
+        </div>
+    </div>
+
+    <script>
+        const galleryImages = Array.from(document.querySelectorAll('.gallery-grid img'));
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeButton = document.getElementById('lightboxClose');
+        const prevButton = document.getElementById('lightboxPrev');
+        const nextButton = document.getElementById('lightboxNext');
+        let currentIndex = 0;
+
+        galleryImages.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                currentIndex = index;
+                openLightbox(image.src);
+            });
+        });
+
+        function openLightbox(src) {
+            lightboxImage.src = src;
+            lightboxOverlay.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightboxOverlay.classList.remove('active');
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImage.src = galleryImages[currentIndex].src;
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            lightboxImage.src = galleryImages[currentIndex].src;
+        }
+
+        closeButton.addEventListener('click', closeLightbox);
+        prevButton.addEventListener('click', showPrev);
+        nextButton.addEventListener('click', showNext);
+
+        lightboxOverlay.addEventListener('click', (event) => {
+            if (event.target === lightboxOverlay) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (!lightboxOverlay.classList.contains('active')) return;
+            if (event.key === 'Escape') closeLightbox();
+            if (event.key === 'ArrowLeft') showPrev();
+            if (event.key === 'ArrowRight') showNext();
+        });
+    </script>
+</body>
+</html>

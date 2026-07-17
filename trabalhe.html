@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Enviar Currículo - ImobPrime</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">ImobPrime</div>
+        <div class="links">
+            <a href="index.html">Início</a>
+            <a href="index.html#imoveis">Imóveis</a>
+            <a href="index.html#acesso">Login / Cadastro</a>
+            <a href="trabalhe.html">Trabalhe Conosco</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="section-title text-center">
+            <h1>Envie seu currículo</h1>
+            <p>Preencha os campos abaixo para se cadastrar em nossa base de talentos.</p>
+        </section>
+
+        <div class="form-box" style="max-width: 800px; margin: auto;">
+            <form id="curriculo-form">
+                <div id="curriculo-error" class="form-error hidden" aria-live="polite"></div>
+                <div id="curriculo-loading" class="form-loading hidden" aria-live="polite">Enviando currículo...</div>
+                <div id="curriculo-success" class="form-success hidden" aria-live="polite">Currículo enviado com sucesso! Entraremos em contato em breve.</div>
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <input id="curriculo-nome" type="text" placeholder="Nome completo" class="input-moderno">
+                    <input id="curriculo-email" type="email" placeholder="E-mail" class="input-moderno">
+                    <input id="curriculo-telefone" type="tel" placeholder="Telefone" class="input-moderno">
+                    <input id="curriculo-cidade" type="text" placeholder="Cidade / Estado" class="input-moderno">
+                    <input id="curriculo-cargo" type="text" placeholder="Cargo desejado" class="input-moderno">
+                    <input id="curriculo-salario" type="text" placeholder="Salário pretendido" class="input-moderno">
+                </div>
+
+                <div class="form-grid" style="grid-template-columns: 1fr; gap: 20px; margin-top: 20px;">
+                    <label for="curriculo-experiencia" class="sr-only">Resumo de experiência</label>
+                    <textarea id="curriculo-experiencia" rows="5" placeholder="Resumo de experiência profissional" class="input-moderno"></textarea>
+
+                    <label for="curriculo-educacao" class="sr-only">Formação acadêmica</label>
+                    <textarea id="curriculo-educacao" rows="4" placeholder="Formação acadêmica e cursos relevantes" class="input-moderno"></textarea>
+
+                    <input id="curriculo-linkedin" type="url" placeholder="Perfil do LinkedIn (opcional)" class="input-moderno">
+                    <input id="curriculo-anexo" type="file" accept=".pdf,.doc,.docx" class="input-moderno">
+                </div>
+
+                <button type="button" class="btn-primary w-100" onclick="enviarCurriculo()">Enviar Currículo</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function markFieldInvalid(fieldId, invalid) {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.classList.toggle('invalid', invalid);
+            }
+        }
+
+        function clearCurriculoErrors() {
+            const errorBox = document.getElementById('curriculo-error');
+            const successBox = document.getElementById('curriculo-success');
+            const loading = document.getElementById('curriculo-loading');
+            if (errorBox) {
+                errorBox.textContent = '';
+                errorBox.classList.add('hidden');
+            }
+            if (successBox) {
+                successBox.classList.add('hidden');
+            }
+            if (loading) {
+                loading.classList.add('hidden');
+            }
+            ['curriculo-nome','curriculo-email','curriculo-telefone','curriculo-cargo','curriculo-experiencia','curriculo-anexo']
+                .forEach(id => markFieldInvalid(id, false));
+        }
+
+        function addCurriculoFieldListeners() {
+            const fields = ['curriculo-nome','curriculo-email','curriculo-telefone','curriculo-cargo','curriculo-experiencia','curriculo-anexo'];
+            fields.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    const eventName = element.type === 'file' ? 'change' : 'input';
+                    element.addEventListener(eventName, () => {
+                        const errorBox = document.getElementById('curriculo-error');
+                        if (errorBox) {
+                            errorBox.textContent = '';
+                            errorBox.classList.add('hidden');
+                        }
+                        const successBox = document.getElementById('curriculo-success');
+                        if (successBox) {
+                            successBox.classList.add('hidden');
+                        }
+                        hideCurriculoLoading();
+                    });
+                }
+            });
+        }
+
+        function showCurriculoLoading() {
+            const loading = document.getElementById('curriculo-loading');
+            const button = document.querySelector('#curriculo-form button');
+            if (loading && button) {
+                loading.classList.remove('hidden');
+                button.disabled = true;
+                button.classList.add('btn-loading');
+                button.innerHTML = '<span class="spinner"></span> Enviando...';
+            }
+        }
+
+        function hideCurriculoLoading() {
+            const loading = document.getElementById('curriculo-loading');
+            const button = document.querySelector('#curriculo-form button');
+            if (loading && button) {
+                loading.classList.add('hidden');
+                button.disabled = false;
+                button.classList.remove('btn-loading');
+                button.textContent = 'Enviar Currículo';
+            }
+        }
+
+        function showCurriculoSuccess(message) {
+            const successBox = document.getElementById('curriculo-success');
+            if (successBox) {
+                successBox.textContent = message;
+                successBox.classList.remove('hidden');
+                setTimeout(() => {
+                    successBox.classList.add('hidden');
+                }, 4000);
+            }
+        }
+
+        function enviarCurriculo() {
+            clearCurriculoErrors();
+            addCurriculoFieldListeners();
+            const nome = document.getElementById('curriculo-nome').value.trim();
+            const email = document.getElementById('curriculo-email').value.trim();
+            const telefone = document.getElementById('curriculo-telefone').value.trim();
+            const cargo = document.getElementById('curriculo-cargo').value.trim();
+            const experiencia = document.getElementById('curriculo-experiencia').value.trim();
+            const arquivo = document.getElementById('curriculo-anexo').files.length;
+            const errorBox = document.getElementById('curriculo-error');
+
+            if (!nome || !email || !telefone || !cargo || !experiencia || !arquivo) {
+                if (errorBox) {
+                    errorBox.textContent = 'Preencha todos os campos obrigatórios e anexe seu currículo antes de enviar.';
+                    errorBox.classList.remove('hidden');
+                }
+                markFieldInvalid('curriculo-nome', !nome);
+                markFieldInvalid('curriculo-email', !email);
+                markFieldInvalid('curriculo-telefone', !telefone);
+                markFieldInvalid('curriculo-cargo', !cargo);
+                markFieldInvalid('curriculo-experiencia', !experiencia);
+                markFieldInvalid('curriculo-anexo', !arquivo);
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                if (errorBox) {
+                    errorBox.textContent = 'Informe um e-mail válido.';
+                    errorBox.classList.remove('hidden');
+                }
+                markFieldInvalid('curriculo-email', true);
+                return;
+            }
+
+            showCurriculoLoading();
+            setTimeout(() => {
+                hideCurriculoLoading();
+                showCurriculoSuccess('Currículo enviado com sucesso! Entraremos em contato em breve.');
+                document.getElementById('curriculo-form').reset();
+            }, 1400);
+        }
+    </script>
+</body>
+</html>
