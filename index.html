@@ -3,44 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Durand Tech System| Desenvolvimento de Sistemas</title>
+    <title>Durand Tech System | Desenvolvimento de Sistemas e Sites em Pelotas-RS</title>
+    <meta name="description" content="Durand Tech System - Desenvolvimento de sites, sistemas ERP, CRM, apps e soluções em nuvem em Pelotas-RS. Transformamos ideias em software escalável.">
+    <meta property="og:title" content="Durand Tech System">
+    <meta property="og:description" content="Sites e sistemas modernos com entrega rápida.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
     <link rel="stylesheet" href="style.css">
-    <!-- Ícones FontAwesome para Redes Sociais -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Cabeçalho e Navegação -->
     <header id="header">
         <div class="container">
             <div class="logo">
-                <h2>Durand Tech <span>Desenvolvimento de Sistemas</span></h2>
+                <h2>Durand Tech <span>System</span></h2>
             </div>
-            <nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
+            <nav id="nav">
                 <ul class="nav-links">
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="vendas.html" target="_blank">Vendas</a></li>                    
                     <li><a href="#sistemas">Sistemas</a></li>
                     <li><a href="#portfolio">Portfólio</a></li>
                     <li><a href="#contato">Contato</a></li>
                     <li><a href="orcamentos.html" class="btn-highlight">Orçamentos</a></li>
+                    <li><a href="vendas.html" class="btn-highlight">Vendas</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Banner entre cabeçalho e início -->
     <section class="homepage-banner">
         <div class="container banner-inner">
-            <p class="banner-note">Promoção especial de lançamento</p>
+            <p class="banner-note">Promoção especial de lançamento em Pelotas-RS</p>
             <h2>Sites e sistemas modernos com entrega rápida</h2>
             <a href="orcamentos.html" class="btn-primary">Peça seu orçamento agora</a>
         </div>
     </section>
 
-    <!-- Seção 1: Início -->
     <section id="inicio" class="hero-section">
         <div class="container hero-content">
             <h1>Inovação Digital de Alta Performance</h1>
@@ -51,7 +53,7 @@
             </div>
         </div>
     </section>
-    <!-- Seção 2: Sobre -->
+
     <section id="sobre" class="section-padding">
         <div class="container">
             <h2 class="section-title">Sobre Nós</h2>
@@ -62,133 +64,65 @@
                     <p>Com uma equipe experiente e antenada com as melhores práticas do mercado, criamos desde aplicações web simples até ecossistemas de microsserviços altamente complexos.</p>
                 </div>
                 <div class="about-stats">
-                    <div class="stat-card">
-                        <h4>+50</h4>
-                        <p>Projetos Entregues</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>99%</h4>
-                        <p>Satisfação de Clientes</p>
-                    </div>
+                    <div class="stat-card"><h4>+50</h4><p>Projetos Entregues</p></div>
+                    <div class="stat-card"><h4>99%</h4><p>Satisfação de Clientes</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção 3: Serviços -->
     <section id="servicos" class="section-padding bg-light">
         <div class="container">
             <h2 class="section-title">Nossos Serviços</h2>
             <div class="grid-services">
-                <div class="card">
-                    <i class="fa-solid fa-code icon-service"></i>
-                    <h3>Desenvolvimento Web</h3>
-                    <p>Criação de sites institucionais, landing pages e portais responsivos e rápidos.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-mobile-screen icon-service"></i>
-                    <h3>Aplicativos Mobile</h3>
-                    <p>Apps nativos e híbridos sob medida para Android e iOS.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-cloud icon-service"></i>
-                    <h3>Soluções em Nuvem</h3>
-                    <p>Migração, infraestrutura escalável e APIs seguras na AWS, Azure ou GCP.</p>
-                </div>
+                <div class="card"><i class="fa-solid fa-code icon-service"></i><h3>Desenvolvimento Web</h3><p>Criação de sites institucionais, landing pages e portais responsivos e rápidos.</p></div>
+                <div class="card"><i class="fa-solid fa-mobile-screen icon-service"></i><h3>Aplicativos Mobile</h3><p>Apps nativos e híbridos sob medida para Android e iOS.</p></div>
+                <div class="card"><i class="fa-solid fa-cloud icon-service"></i><h3>Soluções em Nuvem</h3><p>Migração, infraestrutura escalável e APIs seguras na AWS, Azure ou GCP.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Seção 4: Habilidades -->
     <section id="habilidades" class="section-padding bg-dark text-light">
         <div class="container">
             <h2 class="section-title">Nossas Habilidades</h2>
             <p class="section-subtitle">Competências técnicas que garantem entrega rápida, segura e com design de alto impacto.</p>
             <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>Desenvolvimento Web</h3>
-                        <span>95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="95"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>UX / UI</h3>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="90"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <h3>Automação & APIs</h3>
-                        <span>88%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="88"></div>
-                    </div>
-                </div>
+                <div class="skill-card"><div class="skill-header"><h3>Desenvolvimento Web</h3><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-progress="95"></div></div></div>
+                <div class="skill-card"><div class="skill-header"><h3>UX / UI</h3><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div></div>
+                <div class="skill-card"><div class="skill-header"><h3>Automação & APIs</h3><span>88%</span></div><div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Seção 5: Sistemas -->
     <section id="sistemas" class="section-padding">
         <div class="container">
             <h2 class="section-title">Nossos Sistemas</h2>
             <p class="section-subtitle">Plataformas completas prontas para integrar e acelerar sua gestão.</p>
             <div class="grid-systems">
-                <div class="system-item">
-                    <h3>ERP & CRM Customizados</h3>
-                    <p>Controle financeiro, fluxo de vendas e gestão de clientes centralizados em uma única ferramenta web inteligente.</p>
-                </div>
-                <div class="system-item">
-                    <h3>Gestão de Estoque</h3>
-                    <p>Logística automatizada com leitores, alertas de baixa quantidade e relatórios analíticos em tempo real.</p>
-                </div>
+                <div class="system-item"><h3>ERP & CRM Customizados</h3><p>Controle financeiro, fluxo de vendas e gestão de clientes centralizados em uma única ferramenta web inteligente.</p></div>
+                <div class="system-item"><h3>Gestão de Estoque</h3><p>Logística automatizada com leitores, alertas de baixa quantidade e relatórios analíticos em tempo real.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Seção 5: Portfólio -->
     <section id="portfolio" class="section-padding bg-light">
         <div class="container">
             <h2 class="section-title">Portfólio</h2>
             <div class="grid-portfolio">
-                <div class="portfolio-item">
-                    <div class="portfolio-info">
-                        <h3>FinTech App</h3>
-                        <p>Plataforma de finanças descentralizada com alta criptografia.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-info">
-                        <h3>E-commerce Scale</h3>
-                        <p>Loja virtual preparada para picos massivos de acessos simultâneos.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-info">
-                        <h3>Dashboard Saúde</h3>
-                        <p>Sistema interno de triagem médica e acompanhamento de leitos.</p>
-                    </div>
-                </div>
+                <div class="portfolio-item"><div class="portfolio-info"><h3>FinTech App</h3><p>Plataforma de finanças descentralizada com alta criptografia.</p></div></div>
+                <div class="portfolio-item"><div class="portfolio-info"><h3>E-commerce Scale</h3><p>Loja virtual preparada para picos massivos de acessos simultâneos.</p></div></div>
+                <div class="portfolio-item"><div class="portfolio-info"><h3>Dashboard Saúde</h3><p>Sistema interno de triagem médica e acompanhamento de leitos.</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Seção 6: Contato -->
     <section id="contato" class="section-padding">
         <div class="container">
             <h2 class="section-title">Contato</h2>
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <h3>Fale Diretamente Conosco</h3>
-                    <p><i class="fa-solid fa-envelope"></i> durandtechsysten@gmail.com</p>
+                    <p><i class="fa-solid fa-envelope"></i> durandtechsystem@gmail.com</p>
                     <p><i class="fa-solid fa-phone"></i> +55 (53) 99183-3588</p>
                     <p><i class="fa-solid fa-location-dot"></i> Pelotas, RS - Rio Grande do Sul</p>
                 </div>
@@ -196,18 +130,17 @@
                     <input type="text" id="contato-nome" placeholder="Seu Nome" required>
                     <input type="email" id="contato-email" placeholder="Seu E-mail" required>
                     <textarea id="contato-mensagem" placeholder="Sua Mensagem" rows="5" required></textarea>
-                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                    <button type="submit" class="btn-primary">Enviar no WhatsApp</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Rodapé & Redes Sociais -->
     <footer>
         <div class="container footer-content">
-            <p>&copy; 2026 Durand Tech Soft. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Durand Tech System. Todos os direitos reservados.</p>
             <div class="social-links">
-                <a href="https://instagram.com/durandtechsysten" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://instagram.com/durandtechsystem" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://github.com/otaviorenan648-cpu" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=61577087769278&locale=pt_BR" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://telegram.org/@OtavioDev2684" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
@@ -216,7 +149,8 @@
         </div>
     </footer>
 
-    
+    <a href="https://wa.me/5553991833588?text=Ol%C3%A1%2C%20vim%20pelo%20site%20Durand%20Tech" class="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
     <script src="index.js"></script>
 </body>
 </html>
